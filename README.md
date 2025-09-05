@@ -13,18 +13,21 @@ Este projeto é um gerenciador de tarefas com interface gráfica em Python, estr
 - **Arquitetura MVC** bem estruturada
 - **Persistência MongoDB** com fallback automático para memória
 - **Configuração via variáveis de ambiente**
-- **Interface gráfica intuitiva** (Tkinter)
+- **Interface gráfica moderna** (CustomTkinter) com design responsivo
+- **Cards visuais** para exibição de tarefas com ícones de status
+- **Tema escuro/claro** automático baseado no sistema
 - **Sistema robusto** com tratamento de erros
 - **Testes automatizados** incluídos
+- **Interface intuitiva** com seções organizadas e scroll
 
 ## 📋 Requisitos
 
 - **Python 3.8+**
 - **MongoDB Community Edition** (opcional - fallback automático)
 - **Bibliotecas Python:**
-  - tkinter (incluso no Python)
-  - pymongo
-  - python-dotenv
+  - customtkinter (interface gráfica moderna)
+  - pymongo (conexão MongoDB)
+  - python-dotenv (variáveis de ambiente)
 
 ## ⚙️ Instalação
 
@@ -81,18 +84,27 @@ python test_database.py
 ## ✨ Funcionalidades
 
 ### Operações CRUD Completas
-- ✅ **Adicionar** novas tarefas
-- ✅ **Listar** todas as tarefas ou filtrar por status
-- ✅ **Atualizar** tarefas existentes
-- ✅ **Excluir** tarefas
-- ✅ **Buscar** tarefas por ID
+- ✅ **Adicionar** novas tarefas com formulário intuitivo
+- ✅ **Listar** todas as tarefas em cards visuais organizados
+- ✅ **Atualizar** tarefas existentes com seleção por clique
+- ✅ **Excluir** tarefas com confirmação visual
+- ✅ **Filtrar** tarefas por status (Todos, Pendente, Concluída)
+
+### Interface Moderna (CustomTkinter)
+- 🎨 **Design moderno** com cantos arredondados e sombras
+- 📱 **Layout responsivo** com scroll automático
+- 🃏 **Cards visuais** para cada tarefa com ícones de status
+- 🌓 **Tema automático** (escuro/claro) baseado no sistema
+- ✨ **Animações suaves** e transições elegantes
+- 📝 **Formulários organizados** em seções bem definidas
+- 🎯 **Botões coloridos** com feedback visual ao hover
 
 ### Recursos Avançados
 - 🔄 **Fallback automático** para memória quando MongoDB indisponível
 - 🔧 **Configuração flexível** via variáveis de ambiente
 - 🛡️ **Tratamento robusto de erros**
-- 🎨 **Interface gráfica intuitiva** com Tkinter
 - 🧪 **Testes automatizados** para validação
+- 💾 **Persistência confiável** com MongoDB
 
 ## 📁 Estrutura do Projeto
 
@@ -194,26 +206,39 @@ graph TD
 
 | Componente | Responsabilidade | Tecnologia |
 |------------|------------------|------------|
-| **View** | Interface gráfica e interação | Tkinter |
+| **View** | Interface gráfica moderna e interação | CustomTkinter |
 | **Controller** | Lógica de negócio e coordenação | Python |
 | **Model** | Operações CRUD e validação | PyMongo |
 | **Database** | Conexão e contexto de dados | MongoDB/Memory |
 
 ## 📚 Exemplos de Uso
 
-### Uso Básico da Interface
+### Uso Básico da Interface Moderna
 
-```python
+```bash
 # Executar aplicação principal
 python main.py
-
-# A interface permite:
-# 1. Adicionar nova tarefa
-# 2. Listar tarefas existentes
-# 3. Filtrar por status (Pendente/Concluída)
-# 4. Editar tarefas selecionadas
-# 5. Excluir tarefas
 ```
+
+**Nova Interface CustomTkinter oferece:**
+
+🎨 **Design Moderno:**
+- Cards visuais para cada tarefa com ícones de status
+- Tema escuro/claro automático baseado no sistema
+- Cantos arredondados e sombras elegantes
+- Botões coloridos com feedback visual
+
+📱 **Funcionalidades Aprimoradas:**
+1. ✏️ **Formulário organizado** em seções (Nova Tarefa, Ações, Filtros)
+2. 🃏 **Cards de tarefas** com título, descrição truncada e ícone de status
+3. 🔍 **Filtros visuais** por status (Todos, Pendente, Concluída)
+4. 📝 **Seleção por clique** nos cards para edição
+5. 🗑️ **Exclusão com confirmação** visual
+6. 📜 **Scroll automático** para listas longas
+
+**Ícones de Status:**
+- ⏳ Tarefas Pendentes (laranja)
+- ✅ Tarefas Concluídas (verde)
 
 ### Uso Programático do Model
 
@@ -268,29 +293,49 @@ COLLECTION_NAME=tarefas_dev
 
 ## 📸 Interface Gráfica
 
-### Tela Principal
+### Tela Principal (CustomTkinter)
 ```
-┌─────────────────────────────────────────┐
-│           Gerenciador de Tarefas        │
-├─────────────────────────────────────────┤
-│ Título: [________________]              │
-│ Descrição: [________________________]   │
-│ Status: [Pendente ▼]                    │
-│                                         │
-│ [Adicionar] [Atualizar] [Excluir]      │
-├─────────────────────────────────────────┤
-│ Filtro: [Todas ▼]        [Listar]      │
-├─────────────────────────────────────────┤
-│ ┌─────────────────────────────────────┐ │
-│ │ Lista de Tarefas                    │ │
-│ │ • Estudar Python (Pendente)         │ │
-│ │ • Fazer exercícios (Concluída)      │ │
-│ │ • Projeto final (Pendente)          │ │
-│ └─────────────────────────────────────┘ │
-└─────────────────────────────────────────┘
+┌─────────────────────────────────────────────────────────┐
+│                📋 Gerenciador de Tarefas                │
+├─────────────────────────────────────────────────────────┤
+│ ╭─────────────── ✏️ Nova Tarefa ───────────────╮       │
+│ │ Título: [Digite o título da tarefa...]        │       │
+│ │ Descrição: ┌─────────────────────────────────┐ │       │
+│ │           │                                 │ │       │
+│ │           └─────────────────────────────────┘ │       │
+│ │ Status: [Pendente ▼]                          │       │
+│ ╰───────────────────────────────────────────────╯       │
+│                                                         │
+│ ╭─────────────────── ⚡ Ações ──────────────────╮       │
+│ │  [➕ Adicionar]  [✏️ Atualizar]  [🗑️ Excluir]  │       │
+│ ╰─────────────────────────────────────────────────╯       │
+│                                                         │
+│ ╭─────────────────── 🔍 Filtros ─────────────────╮      │
+│ │ Status: [Todos ▼]              [🔎 Filtrar]     │      │
+│ ╰─────────────────────────────────────────────────╯      │
+│                                                         │
+│ ╭─────────────── 📝 Lista de Tarefas ──────────────╮    │
+│ │ ╭─────────────────────────────────────────────╮   │    │
+│ │ │ ⏳ Estudar Python                           │📝 │    │
+│ │ │    Revisar conceitos de POO e...           │   │    │
+│ │ ╰─────────────────────────────────────────────╯   │    │
+│ │ ╭─────────────────────────────────────────────╮   │    │
+│ │ │ ✅ Fazer exercícios                         │📝 │    │
+│ │ │    Completar lista de exercícios...         │   │    │
+│ │ ╰─────────────────────────────────────────────╯   │    │
+│ ╰───────────────────────────────────────────────────╯    │
+└─────────────────────────────────────────────────────────┘
 ```
 
 ## 📈 Melhorias Futuras
+
+### ✅ Recentemente Implementado
+- [x] **Interface moderna** com CustomTkinter
+- [x] **Cards visuais** para exibição de tarefas
+- [x] **Tema automático** escuro/claro
+- [x] **Layout responsivo** com scroll
+- [x] **Ícones de status** e feedback visual
+- [x] **Seções organizadas** na interface
 
 ### Funcionalidades
 - [ ] Implementar índices no MongoDB para otimização
@@ -299,6 +344,16 @@ COLLECTION_NAME=tarefas_dev
 - [ ] Sistema de categorias e tags
 - [ ] Notificações e lembretes
 - [ ] Exportação para PDF/Excel
+- [ ] Busca por texto nas tarefas
+- [ ] Ordenação por data/prioridade
+
+### Interface
+- [ ] Modo de visualização em lista/grid
+- [ ] Personalização de cores e temas
+- [ ] Atalhos de teclado
+- [ ] Drag & drop para reordenação
+- [ ] Tooltips informativos
+- [ ] Animações mais elaboradas
 
 ### Técnicas
 - [ ] Adicionar logs estruturados
