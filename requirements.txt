@@ -1,2 +1,2 @@
-pymongo
-bson
+pymongo==4.6.3
+python-dotenv==1.0.0
