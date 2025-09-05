@@ -1,5 +1,11 @@
 # Gerenciador de Tarefas (MVC)
 
+![Python](https://img.shields.io/badge/Python-3.8+-blue.svg)
+![MongoDB](https://img.shields.io/badge/MongoDB-Community-green.svg)
+![License](https://img.shields.io/badge/License-MIT-yellow.svg)
+![Status](https://img.shields.io/badge/Status-Stable-brightgreen.svg)
+![Platform](https://img.shields.io/badge/Platform-Windows%20%7C%20macOS%20%7C%20Linux-lightgrey.svg)
+
 Este projeto é um gerenciador de tarefas com interface gráfica em Python, estruturado no padrão MVC (Model-View-Controller) e persistência de dados em MongoDB com sistema de fallback para armazenamento em memória.
 
 ## 🚀 Características
@@ -161,14 +167,153 @@ pip install -r requirements.txt
 - Certifique-se de que o MongoDB tem permissões adequadas
 - Execute como administrador se necessário (Windows)
 
+## 🏗️ Arquitetura Técnica
+
+### Padrão MVC Implementado
+
+```mermaid
+graph TD
+    A[View - tarefa_view.py] --> B[Controller - tarefa_controller.py]
+    B --> C[Model - tarefa_model.py]
+    C --> D[Database - contexto.py]
+    D --> E[(MongoDB)]
+    D --> F[Memory Fallback]
+    
+    G[main.py] --> A
+    H[.env] --> D
+```
+
+### Fluxo de Dados
+
+1. **Interface Gráfica (View)**: Captura interações do usuário
+2. **Controlador (Controller)**: Processa lógica de negócio
+3. **Modelo (Model)**: Gerencia operações de dados
+4. **Contexto de Banco**: Abstrai conexão MongoDB/Memória
+
+### Componentes Principais
+
+| Componente | Responsabilidade | Tecnologia |
+|------------|------------------|------------|
+| **View** | Interface gráfica e interação | Tkinter |
+| **Controller** | Lógica de negócio e coordenação | Python |
+| **Model** | Operações CRUD e validação | PyMongo |
+| **Database** | Conexão e contexto de dados | MongoDB/Memory |
+
+## 📚 Exemplos de Uso
+
+### Uso Básico da Interface
+
+```python
+# Executar aplicação principal
+python main.py
+
+# A interface permite:
+# 1. Adicionar nova tarefa
+# 2. Listar tarefas existentes
+# 3. Filtrar por status (Pendente/Concluída)
+# 4. Editar tarefas selecionadas
+# 5. Excluir tarefas
+```
+
+### Uso Programático do Model
+
+```python
+from model.tarefa_model import TarefaModel
+
+# Inicializar modelo
+model = TarefaModel()
+
+# Adicionar tarefa
+resultado = model.adicionar(
+    titulo="Estudar Python",
+    descricao="Revisar conceitos de POO",
+    status="Pendente"
+)
+
+# Listar todas as tarefas
+tarefas = model.listar()
+
+# Filtrar por status
+pendentes = model.listar("Pendente")
+concluidas = model.listar("Concluída")
+
+# Buscar por ID
+tarefa = model.buscar_por_id(objeto_id)
+
+# Atualizar tarefa
+model.atualizar(
+    id_tarefa,
+    "Novo título",
+    "Nova descrição",
+    "Concluída"
+)
+
+# Excluir tarefa
+model.excluir(id_tarefa)
+```
+
+### Configuração Personalizada
+
+```python
+# Arquivo .env personalizado
+MONGO_URI=mongodb://usuario:senha@servidor:27017
+DATABASE_NAME=meu_projeto_tarefas
+COLLECTION_NAME=minhas_tarefas
+
+# Para ambiente de desenvolvimento
+MONGO_URI=  # Deixar vazio para usar memória
+DATABASE_NAME=dev_tarefas
+COLLECTION_NAME=tarefas_dev
+```
+
+## 📸 Interface Gráfica
+
+### Tela Principal
+```
+┌─────────────────────────────────────────┐
+│           Gerenciador de Tarefas        │
+├─────────────────────────────────────────┤
+│ Título: [________________]              │
+│ Descrição: [________________________]   │
+│ Status: [Pendente ▼]                    │
+│                                         │
+│ [Adicionar] [Atualizar] [Excluir]      │
+├─────────────────────────────────────────┤
+│ Filtro: [Todas ▼]        [Listar]      │
+├─────────────────────────────────────────┤
+│ ┌─────────────────────────────────────┐ │
+│ │ Lista de Tarefas                    │ │
+│ │ • Estudar Python (Pendente)         │ │
+│ │ • Fazer exercícios (Concluída)      │ │
+│ │ • Projeto final (Pendente)          │ │
+│ └─────────────────────────────────────┘ │
+└─────────────────────────────────────────┘
+```
+
 ## 📈 Melhorias Futuras
 
+### Funcionalidades
 - [ ] Implementar índices no MongoDB para otimização
 - [ ] Adicionar validação de dados mais robusta
 - [ ] Implementar paginação para grandes volumes
+- [ ] Sistema de categorias e tags
+- [ ] Notificações e lembretes
+- [ ] Exportação para PDF/Excel
+
+### Técnicas
 - [ ] Adicionar logs estruturados
 - [ ] Sistema de backup automático
 - [ ] API REST para integração externa
+- [ ] Testes unitários abrangentes
+- [ ] CI/CD pipeline
+- [ ] Containerização com Docker
+
+### Interface
+- [ ] Tema escuro/claro
+- [ ] Atalhos de teclado
+- [ ] Drag & drop para reordenação
+- [ ] Calendário integrado
+- [ ] Gráficos de produtividade
 
 ---
 
