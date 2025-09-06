@@ -1,0 +1,32 @@
+# Ignorar arquivos e pastas comuns de Python e VSCode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.db
+*.sqlite3
+.env
+.venv/
+venv/
+.envrc
+.DS_Store
+.vscode/
+.idea/
+*.log
+*.bak
+*.swp
+*.swo
+*.~
+# Ignorar arquivos de sistema do Windows
+Thumbs.db
+Desktop.ini
+# Ignorar arquivos de configuração do MongoDB (caso existam)
+mongod.lock
+# Ignorar arquivos temporários
+*.tmp
+*.temp
+# Ignorar arquivos de testes e exemplos (caso existam)
+tests/
+examples/
+# Ignorar arquivos de exportação do Jupyter
+*.ipynb_checkpoints/
